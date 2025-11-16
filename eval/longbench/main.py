@@ -105,7 +105,7 @@ def main(args):
 
     # Setup for Configuration
     model2maxlen = json.load(open("eval/longbench/config/model2maxlen.json", "r"))
-    max_length = model2maxlen[args.model]
+    max_length = 7950
 
     if args.longbench_type == "longbench-e":
         datasets = ["qasper", "multifieldqa_en", "hotpotqa", "2wikimqa", "gov_report", "multi_news", \
