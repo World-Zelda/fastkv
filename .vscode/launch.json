@@ -1,0 +1,49 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "H2O",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "./eval/longbench/main.py",
+      "console": "integratedTerminal",
+      "python": "/home/xsj/anaconda3/envs/fast/bin/python",
+      "env": {
+        "CUDA_VISIBLE_DEVICES": "0,1,2"
+      },
+      "args": [
+        "--model", "/home/xsj/data_xsj/1models/Phi-3.5-mini-instruct",
+        "--mode", "h2o",
+        "--pooling", "avgpool",
+        "--kernel_size", "7",
+        "--window_size", "8",
+        "--save_path", "h2o-1024",
+        "--dataset", "narrativeqa",
+        "--max_capacity_prompt", "1024"
+      ]
+    },
+    {
+      "name": "FastKV",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "./eval/longbench/main.py",
+      "console": "integratedTerminal",
+      "python": "/home/xsj/anaconda3/envs/fast/bin/python",
+      "env": {
+        "CUDA_VISIBLE_DEVICES": "0,1,2"
+      },
+      "args": [
+        "--model", "/home/xsj/data_xsj/1models/Mistral-7B-Instruct-v0.3",
+        "--mode", "fastkv",
+        "--save_path", "fastkv-1024",
+        "--dataset", "narrativeqa",
+        "--max_capacity_prompt", "1024",
+        "--pooling", "avgpool",
+        "--kernel_size", "7",
+        "--window_size", "8",
+        "--tsp_idx", "15",
+        "--tsp_len", "2048"
+      ]
+    }
+  ]
+}

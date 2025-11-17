@@ -21,7 +21,6 @@ cuda/build
 *.so
 *.egg-info
 *.o
-.vscode
 .whl
 *.egg
 outputs/
