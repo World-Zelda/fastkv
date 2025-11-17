@@ -13,7 +13,7 @@ from transformers.models.llama.modeling_llama import (
 from transformers.utils import (
     logging,
 )
-from baseline.snapkv.snapkv_utils import init_snapkv
+from baseline.streamingllm.streamingllm_utils import init_streamingllm
 
 logger = logging.get_logger(__name__)
 
@@ -32,7 +32,7 @@ def llama_flash_attn2_forward(
 ) -> Tuple[torch.Tensor, Optional[torch.Tensor], Optional[Tuple[torch.Tensor]]]:
 
     # [SnapKV] register kv_cluster
-    init_snapkv(self)
+    init_streamingllm(self)
 
     # LlamaFlashAttention2 attention does not support output_attentions
     output_attentions = False

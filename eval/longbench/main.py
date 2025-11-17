@@ -42,6 +42,12 @@ def generate_longbench(data, max_length, max_gen, prompt_format,
         elif args.mode == 'snapkv':
             from baseline.snapkv.snapkv_utils import compress
             compress(model, args)
+        elif args.mode == 'h2o':
+            from baseline.h2o.h2o_utils import compress
+            compress(model, args)
+        elif args.mode == 'streamingllm':
+            from baseline.streamingllm.streamingllm_utils import compress
+            compress(model, args)
         elif args.mode == 'gemfilter':
             from baseline.gemfilter.gemfilter_utils import gemfilter_generate_selection, set_topk
             set_topk(model, args.max_capacity_prompt, mode='gemfilter')
@@ -138,6 +144,16 @@ def main(args):
         replace_llama()
         replace_mistral()
         replace_phi3()
+    elif args.mode == 'h2o':
+        from baseline.h2o.monkeypatch import replace_llama, replace_mistral, replace_phi3
+        replace_llama()
+        replace_mistral()
+        replace_phi3()
+    elif args.mode == 'streamingllm':
+        from baseline.streamingllm.monkeypatch import replace_llama, replace_mistral, replace_phi3
+        replace_llama()
+        replace_mistral()
+        replace_phi3()
     elif args.mode == 'gemfilter':
         from baseline.gemfilter.monkeypatch import replace_llama, replace_mistral
         replace_llama()
@@ -187,7 +203,7 @@ if __name__ == "__main__":
     parser.add_argument("--save_path", default="", type=str, help="Path to save the output")
 
     # KV Compression
-    parser.add_argument("--mode", type=str, default="fastkv", choices=["fullkv", "fastkv", "snapkv", "gemfilter", "adakv", "headkv"])
+    parser.add_argument("--mode", type=str, default="fastkv", choices=["fullkv", "fastkv", "snapkv", "h2o","streamingllm", "gemfilter", "adakv", "headkv"])
     parser.add_argument("--window_size", type=int, default=8)
     parser.add_argument("--max_capacity_prompt", type=int, default=512)
     parser.add_argument("--kernel_size", type=int, default=7)

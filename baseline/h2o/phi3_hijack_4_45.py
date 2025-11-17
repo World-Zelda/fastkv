@@ -13,7 +13,7 @@ from transformers.models.phi3.modeling_phi3 import (
 from transformers.utils import (
     logging,
 )
-from baseline.snapkv.snapkv_utils import init_snapkv
+from baseline.h2o.h2o_utils import init_h2o
 
 logger = logging.get_logger(__name__)
 
@@ -31,7 +31,7 @@ def phi3_flash_attn2_forward(
     cache_position: Optional[torch.LongTensor] = None,
 ) -> Tuple[torch.Tensor, Optional[torch.Tensor], Optional[Tuple[torch.Tensor]]]:
     # [SnapKV] register kv_cluster
-    init_snapkv(self)
+    init_h2o(self)
     # Phi3FlashAttention2 attention does not support output_attentions
 
     output_attentions = False

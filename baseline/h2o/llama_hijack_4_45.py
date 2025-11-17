@@ -13,7 +13,7 @@ from transformers.models.llama.modeling_llama import (
 from transformers.utils import (
     logging,
 )
-from baseline.snapkv.snapkv_utils import init_snapkv
+from baseline.h2o.h2o_utils import init_h2o
 
 logger = logging.get_logger(__name__)
 
@@ -31,8 +31,8 @@ def llama_flash_attn2_forward(
     position_embeddings: Optional[Tuple[torch.Tensor, torch.Tensor]] = None,  # will become mandatory in v4.45
 ) -> Tuple[torch.Tensor, Optional[torch.Tensor], Optional[Tuple[torch.Tensor]]]:
 
-    # [SnapKV] register kv_cluster
-    init_snapkv(self)
+    # [H2O] register kv_cluster
+    init_h2o(self)
 
     # LlamaFlashAttention2 attention does not support output_attentions
     output_attentions = False
@@ -57,13 +57,13 @@ def llama_flash_attn2_forward(
 
     query_states, key_states = apply_rotary_pos_emb(
         query_states, key_states, cos, sin, position_ids)
-    # [SnapKV] move to ahead
+    # [H2O] move to ahead
     key_states = repeat_kv(key_states, self.num_key_value_groups)
     value_states = repeat_kv(value_states, self.num_key_value_groups)
 
     if past_key_value is not None:
         cache_kwargs = {"sin": sin, "cos": cos}  # Specific to RoPE models
-        if q_len > 1:  # [SnapKV] add kv_cluster
+        if q_len > 1:  # [H2O] add kv_cluster
             key_states_compress, value_states_compress = self.kv_cluster.update_kv(
                 key_states, query_states, value_states, attention_mask, self.num_key_value_groups)
             past_key_value.update(key_states_compress, value_states_compress, self.layer_idx, cache_kwargs)

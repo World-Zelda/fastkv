@@ -16,12 +16,12 @@ device=0
 max_prompt=1024
 
 # SnapKV
-path="snapkv-$max_prompt"
+path="h2o-$max_prompt"
 for dataset in $dataset_list
 do
     CUDA_VISIBLE_DEVICES=$device python -m eval.longbench.main \
     --model $model \
-    --mode snapkv \
+    --mode h2o \
     --pooling avgpool \
     --kernel_size 7 \
     --window_size 8 \

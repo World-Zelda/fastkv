@@ -14,7 +14,7 @@ from transformers.models.mistral.modeling_mistral import (
 from transformers.utils import (
     logging,
 )
-from baseline.snapkv.snapkv_utils import init_snapkv
+from baseline.h2o.h2o_utils import init_h2o
 
 logger = logging.get_logger(__name__)
 
@@ -31,7 +31,7 @@ def mistral_flash_attn2_forward(
     cache_position: Optional[torch.LongTensor] = None,
 ):
     # [SnapKV] register kv_cluster
-    init_snapkv(self)
+    init_h2o(self)
     
     bsz, q_len, _ = hidden_states.size()
 
