@@ -10,8 +10,8 @@
 # mistralai/Mistral-Nemo-Instruct-2407
 
 # Config
-dataset_list="narrativeqa qasper multifieldqa_en hotpotqa 2wikimqa musique gov_reportqmsum multi_news trec triviaqa samsum passage_count passage_retrieval_en lcc repobench-p" 
-model="/root/autodl-tmp/Mistral-7B-Instruct-v0.3"
+dataset_list="narrativeqa qasper multifieldqa_en hotpotqa 2wikimqa musique gov_report qmsum multi_news trec triviaqa samsum passage_count passage_retrieval_en lcc repobench-p" 
+model="/home/xsj/data_xsj/1models/Phi-3.5-mini-instruct"
 device=0
 max_prompt=1024
 

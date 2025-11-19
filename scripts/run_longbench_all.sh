@@ -11,8 +11,8 @@
 
 # Config
 dataset_list="narrativeqa qasper multifieldqa_en hotpotqa 2wikimqa musique gov_report qmsum multi_news trec triviaqa samsum passage_count passage_retrieval_en lcc repobench-p" 
-model="/home/xsj/data_xsj/1models/Mistral-7B-Instruct-v0.3"
-device=0,1,2
+model="/home/xsj/data_xsj/1models/Llama-3.1-8B-Instruct"
+device=0
 max_prompt=1024
 
 # h2o
@@ -28,9 +28,6 @@ do
     --save_path $path \
     --dataset $dataset \
     --max_capacity_prompt $max_prompt
-    CUDA_VISIBLE_DEVICES=$device python -m eval.longbench.evaluate \
-    --model $model \
-    --eval_path $path
 done
 
 # steamingllm
@@ -46,34 +43,9 @@ do
     --save_path $path \
     --dataset $dataset \
     --max_capacity_prompt $max_prompt
-    CUDA_VISIBLE_DEVICES=$device python -m eval.longbench.evaluate \
-    --model $model \
-    --eval_path $path
 done
 
-# FastKV
-path="fastkv-$max_prompt"
-for dataset in $dataset_list
-do
-    CUDA_VISIBLE_DEVICES=$device python -m eval.longbench.main \
-    --model $model \
-    --mode fastkv \
-    --save_path $path \
-    --dataset $dataset \
-    --max_capacity_prompt $max_prompt \
-    --pooling avgpool \
-    --kernel_size 7 \
-    --window_size 8 \
-    --tsp_idx 15 \
-    --tsp_len 2048
-    CUDA_VISIBLE_DEVICES=$device python -m eval.longbench.evaluate \
-    --model $model \
-    --eval_path $path
-done
-
-
-model="/home/xsj/data_xsj/1models/Phi-3.5-mini-instruct"
-# SnapKV
+# Snapkv
 path="snapkv-$max_prompt"
 for dataset in $dataset_list
 do
@@ -86,43 +58,4 @@ do
     --save_path $path \
     --dataset $dataset \
     --max_capacity_prompt $max_prompt
-    CUDA_VISIBLE_DEVICES=$device python -m eval.longbench.evaluate \
-    --model $model \
-    --eval_path $path
-done
-
-# h2o
-path="h2o-$max_prompt"
-for dataset in $dataset_list
-do
-    CUDA_VISIBLE_DEVICES=$device python -m eval.longbench.main \
-    --model $model \
-    --mode h2o \
-    --pooling avgpool \
-    --kernel_size 7 \
-    --window_size 8 \
-    --save_path $path \
-    --dataset $dataset \
-    --max_capacity_prompt $max_prompt
-    CUDA_VISIBLE_DEVICES=$device python -m eval.longbench.evaluate \
-    --model $model \
-    --eval_path $path
-done
-
-# steamingllm
-path="steamingllm-$max_prompt"
-for dataset in $dataset_list
-do
-    CUDA_VISIBLE_DEVICES=$device python -m eval.longbench.main \
-    --model $model \
-    --mode steamingllm \
-    --pooling avgpool \
-    --kernel_size 7 \
-    --window_size 8 \
-    --save_path $path \
-    --dataset $dataset \
-    --max_capacity_prompt $max_prompt
-    CUDA_VISIBLE_DEVICES=$device python -m eval.longbench.evaluate \
-    --model $model \
-    --eval_path $path
 done

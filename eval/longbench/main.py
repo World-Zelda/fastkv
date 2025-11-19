@@ -175,6 +175,9 @@ def main(args):
         data = load_dataset('THUDM/LongBench', dataset, split='test')
     else:
         raise ValueError
+    
+    # 取前20条数据
+    data = data.select(range(20))
 
     out_path = os.path.join(save_path, f"{dataset}.jsonl")
 

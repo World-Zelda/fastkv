@@ -10,9 +10,9 @@
 # mistralai/Mistral-Nemo-Instruct-2407
 
 # Config
-dataset_list="narrativeqa qasper multifieldqa_en hotpotqa 2wikimqa musique gov_reportqmsum multi_news trec triviaqa samsum passage_count passage_retrieval_en lcc repobench-p" 
-model="/root/autodl-tmp/Mistral-7B-Instruct-v0.3"
-device=0
+dataset_list="gov_report qmsum" 
+model="/home/xsj/data_xsj/1models/Mistral-7B-Instruct-v0.3"
+device=1,2
 max_prompt=1024
 
 # SnapKV
