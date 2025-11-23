@@ -24,3 +24,4 @@ cuda/build
 .whl
 *.egg
 outputs/
+.venv

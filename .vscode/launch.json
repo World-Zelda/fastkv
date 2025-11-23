@@ -2,24 +2,21 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "H2O",
+      "name": "vllm",
       "type": "debugpy",
       "request": "launch",
-      "program": "./eval/longbench/main.py",
+      "program": "attention_temperature.py",
       "console": "integratedTerminal",
       "python": "/home/xsj/anaconda3/envs/fast/bin/python",
       "env": {
-        "CUDA_VISIBLE_DEVICES": "0,1,2"
+        "CUDA_VISIBLE_DEVICES": "1,2"
       },
       "args": [
-        "--model", "/home/xsj/data_xsj/1models/Phi-3.5-mini-instruct",
-        "--mode", "h2o",
-        "--pooling", "avgpool",
-        "--kernel_size", "7",
-        "--window_size", "8",
-        "--save_path", "h2o-1024",
-        "--dataset", "narrativeqa",
-        "--max_capacity_prompt", "1024"
+        "--model_name", "/home/xsj/data_xsj/1models/Qwen3-0.6B",
+        "--do_sample",
+        "--num_samples", "5",
+        "--temperature", "0.8",
+        "--output_dir", "results",
       ]
     },
     {
