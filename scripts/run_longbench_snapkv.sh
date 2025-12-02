@@ -10,26 +10,26 @@
 # mistralai/Mistral-Nemo-Instruct-2407
 
 # Config
-dataset_list="gov_report qmsum" 
+dataset_list="hotpotqa 2wikimqa musique" 
 model="/home/xsj/data_xsj/1models/Mistral-7B-Instruct-v0.3"
 device=1,2
 max_prompt=1024
 
 # SnapKV
-path="snapkv-$max_prompt"
+path="fullkv-$max_prompt"
 for dataset in $dataset_list
 do
     CUDA_VISIBLE_DEVICES=$device python -m eval.longbench.main \
     --model $model \
-    --mode snapkv \
+    --mode fullkv \
     --pooling avgpool \
     --kernel_size 7 \
     --window_size 8 \
     --save_path $path \
     --dataset $dataset \
     --max_capacity_prompt $max_prompt
-    CUDA_VISIBLE_DEVICES=$device python -m eval.longbench.evaluate \
-    --model $model \
-    --eval_path $path
+    # CUDA_VISIBLE_DEVICES=$device python -m eval.longbench.evaluate \
+    # --model $model \
+    # --eval_path $path
 done
 
