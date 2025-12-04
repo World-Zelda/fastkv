@@ -1,27 +1,26 @@
 {
   "version": "0.2.0",
   "configurations": [
-    // {
-    //   "name": "vllm",
-    //   "type": "debugpy",
-    //   "request": "launch",
-    //   "program": "attention_temperature.py",
-    //   "console": "integratedTerminal",
-    //   "python": "/home/xsj/data_xsj/miniconda3/envs/fast/bin/python",
-    //   "env": {
-    //     "CUDA_VISIBLE_DEVICES": "0",
-    //     "VLLM_WORKER_MULTIPROC_METHOD": "spawn"
-    //   },
-    //   "args": [
-    //     "--model_name", "/home/xsj/data_xsj/1models/Qwen3-0.6B",
-    //     "--do_sample",
-    //     "--num_samples", "1",
-    //     "--temperature", "0.1",
-    //     "--output_base_dir", "results",
-    //     "--start", "0", 
-    //     "--end", "2"
-    //   ]
-    // },
+    {
+      "name": "vllm-autodl",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "attention_temperature2.py",
+      "console": "integratedTerminal",
+      "python": "/root/miniconda3/bin/python",
+      "env": {
+        "VLLM_WORKER_MULTIPROC_METHOD": "spawn"
+      },
+      "args": [
+        "--model_name", "/root/autodl-fs/Qwen3-4B",
+        "--do_sample",
+        "--num_samples", "10",
+        "--temperature", "0.4",
+        "--output_base_dir", "results",
+        "--start", "0", 
+        "--end", "20"
+      ]
+    },
     {
       "name": "vllm",
       "type": "debugpy",
@@ -43,28 +42,5 @@
         "--end", "500"
       ]
     },
-    {
-      "name": "SnapKV",
-      "type": "debugpy",
-      "request": "launch",
-      "program": "./eval/longbench/main.py",
-      "console": "integratedTerminal",
-      "python": "/home/xsj/anaconda3/envs/fast/bin/python",
-      "env": {
-        "CUDA_VISIBLE_DEVICES": "0,1,2"
-      },
-      "args": [
-        "--model", "/home/xsj/data_xsj/1models/Mistral-7B-Instruct-v0.3",
-        "--mode", "snapkv",
-        "--save_path", "snapkv-1024",
-        "--dataset", "hotpotqa",
-        "--max_capacity_prompt", "1024",
-        "--pooling", "avgpool",
-        "--kernel_size", "7",
-        "--window_size", "8",
-        "--tsp_idx", "15",
-        "--tsp_len", "2048"
-      ]
-    }
   ]
 }
