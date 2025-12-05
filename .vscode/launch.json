@@ -1,32 +1,32 @@
 {
   "version": "0.2.0",
   "configurations": [
-    // {
-    //   "name": "vllm",
-    //   "type": "debugpy",
-    //   "request": "launch",
-    //   "program": "attention_temperature.py",
-    //   "console": "integratedTerminal",
-    //   "python": "/home/xsj/data_xsj/miniconda3/envs/fast/bin/python",
-    //   "env": {
-    //     "CUDA_VISIBLE_DEVICES": "0",
-    //     "VLLM_WORKER_MULTIPROC_METHOD": "spawn"
-    //   },
-    //   "args": [
-    //     "--model_name", "/home/xsj/data_xsj/1models/Qwen3-0.6B",
-    //     "--do_sample",
-    //     "--num_samples", "1",
-    //     "--temperature", "0.1",
-    //     "--output_base_dir", "results",
-    //     "--start", "0", 
-    //     "--end", "2"
-    //   ]
-    // },
     {
       "name": "vllm",
       "type": "debugpy",
       "request": "launch",
       "program": "attention_temperature.py",
+      "console": "integratedTerminal",
+      "python": "/home/xsj/data_xsj/miniconda3/envs/fast/bin/python",
+      "env": {
+        "CUDA_VISIBLE_DEVICES": "2",
+        "VLLM_WORKER_MULTIPROC_METHOD": "spawn"
+      },
+      "args": [
+        "--model_name", "/home/xsj/data_xsj/1models/Qwen3-0.6B",
+        "--do_sample",
+        "--num_samples", "10",
+        "--temperature", "1.2",
+        "--output_base_dir", "results",
+        "--start", "0", 
+        "--end", "500"
+      ]
+    },
+    {
+      "name": "aime2024",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "attention_temperature3.py",
       "console": "integratedTerminal",
       "python": "/home/xsj/data_xsj/miniconda3/envs/fast/bin/python",
       "env": {
@@ -37,10 +37,9 @@
         "--model_name", "/home/xsj/data_xsj/1models/Qwen3-0.6B",
         "--do_sample",
         "--num_samples", "10",
-        "--temperature", "0.4",
+        "--temperature", "1.2",
         "--output_base_dir", "results",
-        "--start", "0", 
-        "--end", "500"
+        "--dataset", "opencompass/AIME2025" 
       ]
     },
     {
