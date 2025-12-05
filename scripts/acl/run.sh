@@ -17,7 +17,7 @@ datasets=(
   "opencompass/AIME2025"
   "HuggingFaceH4/aime_2024"
   "FlagEval/HMMT_2025"
-  "HuggingFaceH4/MATH-500"
+#   "HuggingFaceH4/MATH-500"
 )
 
 # 温度列表
