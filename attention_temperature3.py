@@ -36,7 +36,7 @@ def main(args):
     llm = LLM(
         model=args.model_name,
         dtype="bfloat16",
-        tensor_parallel_size=1,
+        tensor_parallel_size=2,
         gpu_memory_utilization=0.9,
         max_model_len=16384,
         enable_prefix_caching=True
