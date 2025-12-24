@@ -1,5 +1,5 @@
 #!/bin/bash
-
+export PYTHONPATH="/data/xsj/vllm:$PYTHONPATH"
 # 设置 Python 解释器路径
 PYTHON="/home/xsj/data_xsj/miniconda3/envs/fast/bin/python"
 
@@ -7,7 +7,7 @@ PYTHON="/home/xsj/data_xsj/miniconda3/envs/fast/bin/python"
 # - 第一个是本地路径
 # - 后两个是 Hugging Face 模型 ID（vLLM 会自动下载）
 models=(
-  "/home/xsj/data_xsj/1models/Qwen3-0.6B"
+  # "/home/xsj/data_xsj/1models/Qwen3-0.6B"
   "/home/xsj/data_xsj/1models/Qwen3-1.7B"
   # "/home/xsj/data_xsj/1models/DeepSeek-R1-Distill-Qwen-1.5B"
 )
@@ -17,7 +17,7 @@ datasets=(
   "opencompass/AIME2025"
   "HuggingFaceH4/aime_2024"
   "FlagEval/HMMT_2025"
-  # "HuggingFaceH4/MATH-500"
+  "HuggingFaceH4/MATH-500"
 )
 
 # 温度列表

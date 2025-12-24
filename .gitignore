@@ -26,3 +26,6 @@ cuda/build
 outputs/
 .venv
 results/
+results90/
+results95/
+results105/

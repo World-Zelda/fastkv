@@ -5,7 +5,8 @@ import json
 import pandas as pd
 import argparse
 from datasets import load_dataset
-from vllm import LLM, SamplingParams
+from vllm.entrypoints.llm import LLM
+from vllm.sampling_params import SamplingParams
 from utils.attention_temperature_utils import compute_score
 
 stop_words = ["```python", "```py", "Python code", "# Python", "import "]
